@@ -1,0 +1,1 @@
+Telegram Mini-App for property share owners to book, exchange weeks, and manage history.
