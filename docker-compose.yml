@@ -1,39 +1,22 @@
-version: "3.9"
-
 services:
-  # База Mongo
   mongo:
-    image: mongo:7
-    restart: always
+    image: mongo:latest
     ports:
-      - "27017:27017"
-    volumes:
-      - ./data/mongo:/data/db
-
-  # API (Node.js backend)
-  api:
-    build: ./api
-    restart: always
+      - 27017:27017
+  backend:
+    build: ./backend
     ports:
-      - "4000:4000"
-    env_file: .env
+      - 5000:5000
     depends_on:
       - mongo
-
-  # WebApp (React frontend)
-  web:
-    build: ./web
-    restart: always
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/bayhan
+  frontend:
+    build: ./frontend
     ports:
-      - "5173:80"
-    env_file: .env
-    depends_on:
-      - api
-
-  # Админ-бот
-  admin-bot:
-    build: ./admin-bot
-    restart: always
-    env_file: .env
-    depends_on:
-      - api
+      - 3000:3000
+  bot:
+    build: ./bot
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - BACKEND_URL=http://backend:5000
