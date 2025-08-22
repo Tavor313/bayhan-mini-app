@@ -8,17 +8,10 @@
 - Notifications: Telegraf для алертов с inline-кнопками.
 - Deployment: Docker Compose (frontend, backend, mongo, bot).
 
-## Запуск (Docker)
-0. Скопируйте `.env.example` → `.env`, заполните: TELEGRAM_BOT_TOKEN, MONGO_URI=mongodb://mongo:27017/bayhan, DATA_ENC_KEY (32-byte hex for AES), JWT_SECRET, SOCKET_PORT=4001, etc.
-1. `docker compose up --build -d`
-2. WebApp (dev): http://localhost:5173 (в Telegram укажите как WebApp URL).
-   API: http://localhost:4000/health
-   Bot: Запустите в Telegram с /start.
-
 ### Привязка к Telegram
 - В BotFather задайте Web App URL = ваш фронтенд URL.
 - Auth: initData → backend HMAC check + JWT.
-- Notifications: Bot отправляет сообщения с кнопками (ссылки на app).
+- Notifications: Bot отправляет сообщения с кнопками (ссылки на приложение).
 
 ## Сидинг демо-данных
 `curl -X POST http://localhost:4000/api/admin/seed` (только в dev).
@@ -36,20 +29,3 @@
 
 ## Localization
 - Russian (default), English. Toggle in profile.
-
-## Testing
-- Unit: `cd frontend && npm test` (Jest).
-- E2E: `cd frontend && npx cypress run` (stubs).
-
-## API Docs (Basic)
-- GET /api/properties: List properties.
-- POST /api/bookings/create: Create booking (auth required).
-- More in routes/api.js.
-
-## Edge Cases
-- Date conflicts: Backend validation.
-- Offline: LocalStorage for drafts.
-- Real-time: Socket.io for exchange updates.
-
-
-For growth: Indexes on dates in Mongoose.
