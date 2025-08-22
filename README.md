@@ -1,6 +1,6 @@
 # Bayhan Mini-App (Telegram WebApp)
 
-Функционал: бронирования по ротации (Pacaso-like), обмен неделями, история, профиль, уведомления через Telegram. Полная реализация на основе TZ, с UI на основе описания (Figma не доступен для извлечения).
+Функционал: бронирования по ротации (Pacaso-like), обмен неделями, история, профиль, уведомления через Telegram.
 
 Стек: 
 - Frontend: React (Vite) + Telegram WebApp API, React Router, react-calendar, date-fns, i18next, leaflet, jsPDF, socket.io-client, Tailwind CSS.
@@ -50,5 +50,6 @@
 - Date conflicts: Backend validation.
 - Offline: LocalStorage for drafts.
 - Real-time: Socket.io for exchange updates.
+
 
 For growth: Indexes on dates in Mongoose.
